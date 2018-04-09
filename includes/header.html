@@ -29,7 +29,7 @@
     <!-- theme stylesheet -->
     <link href="css/style.default.css" rel="stylesheet" id="theme-stylesheet">
 
-    <!-- your stylesheet with modifications -->
+    <!-- custom stylesheet -->
     <link href="css/custom.css" rel="stylesheet">
 
     <script src="js/respond.min.js"></script>
@@ -130,124 +130,8 @@
                 <ul class="nav navbar-nav navbar-left">
                     <li class="active"><a href="index.php">Home</a>
                     </li>
-                    <li class="dropdown yamm-fw">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Men <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <div class="yamm-content">
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <h5>Men's Clothing</h5>
-                                            <ul>
-                                                <li><a href="category.php?id=men">T-shirts</a>
-                                                </li>
-                                                <li><a href="category.php?id=men">Shirts</a>
-                                                </li>
-                                                <li><a href="category.php?id=men">Pants</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <h5>Boys</h5>
-                                            <ul>
-                                                <li><a href="category.php?id=men">T-shirts</a>
-                                                </li>
-                                                <li><a href="category.php?id=men">Shirts</a>
-                                                </li>
-                                                <li><a href="category.php?id=men">Pants</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.yamm-content -->
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown yamm-fw">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Women <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <div class="yamm-content">
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <h5>Women's Clothing</h5>
-                                            <ul>
-                                                <li><a href="category.php?id=women">T-shirts</a>
-                                                </li>
-                                                <li><a href="category.php?id=women">Shirts</a>
-                                                </li>
-                                                <li><a href="category.php?id=women">Pants</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <h5>Girls</h5>
-                                            <ul>
-                                                <li><a href="category.php?id=women">T-shirts</a>
-                                                </li>
-                                                <li><a href="category.php?id=women">Shirts</a>
-                                                </li>
-                                                <li><a href="category.php?id=women">Pants</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.yamm-content -->
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown yamm-fw">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Retro Items <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <div class="yamm-content">
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <h5>Decades</h5>
-                                            <ul>
-                                                <li><a href="category.php?id=retro">1950's</a>
-                                                </li>
-                                                <li><a href="category.php?id=retro">1960's</a>
-                                                </li>
-                                                <li><a href="category.php?id=retro">1970's</a>
-                                                </li>
-                                                <li><a href="category.php?id=retro">1980's</a>
-                                                </li>
-                                                <li><a href="category.php?id=retro">1990's</a>
-                                                </li>
-                                                <li><a href="category.php?id=retro">2000's</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.yamm-content -->
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown yamm-fw">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Customize <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <div class="yamm-content">
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <h5>Clothing</h5>
-                                            <ul>
-                                                <li><a href="customize.php">T-shirts</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.yamm-content -->
-                            </li>
-                        </ul>
+                    <li class="">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Search<b class="caret"></b></a>
                     </li>
                 </ul>
 
@@ -272,7 +156,7 @@
 
             <div class="collapse clearfix" id="search">
 
-                <form class="navbar-form" role="search">
+                <form class="navbar-form" action="category.php" role="search">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search">
                         <span class="input-group-btn">

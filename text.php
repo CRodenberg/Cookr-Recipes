@@ -48,9 +48,9 @@ include('./includes/header.html');
                     <div class="box" id="text-page">
                         <h1>About Us</h1>
 
-                        <p class="lead">This company was founded around the principles of bringing everyone the pleasures and joys they experienced in the past.</p>
+                        <p class="lead">Cookr aims to bring everyone their favorite meals in the easiest way possible.</p>
 
-                        <p>Nostalgia has struck this company with the goal to bring great memories from the past back into light. As a newly founded company from Louisville, Kentucky, we aim to provide the best possible online store for personalized and pre-made items. The three creators of this site: Drew Greenwood, Robert Settles, and Cole Rodenberg attend Bellarmine University and started this company in class.</p>
+                        <p>We started as a group of college students who were tired of experiencing the hassle of picking out the wrong ingredients at the grocery store. No one enjoys a wasted trip anywhere, but this is especially frustrating when trying to plan out the week's meals.</p>
 
                         <h2>Learn More About Us!</h2>
                         <p>If you would like to know more about the company or the founders, contact us on social media through the links at the bottom of the page! We love to engage with our customers!</p>

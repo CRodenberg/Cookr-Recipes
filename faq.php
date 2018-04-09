@@ -32,7 +32,9 @@
                                 <li>
                                     <a href="contact.php">Contact page</a>
                                 </li>
-
+                                <li>
+                                    <a href="text.php">About Us</a>
+                                </li>
                             </ul>
 
                         </div>
@@ -68,12 +70,10 @@
                                 </div>
                                 <div id="faq1" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
-                                            Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                                        <p>We are very sorry to hear that your order has not arrived at the desired time. In this situation do one of the following:</p>
                                         <ul>
-                                            <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-                                            <li>Aliquam tincidunt mauris eu risus.</li>
-                                            <li>Vestibulum auctor dapibus neque.</li>
+                                            <li>Use the tracking number we sent via email.</li>
+                                            <li>Email/Call our amazing customer support.</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -94,9 +94,7 @@
                                 </div>
                                 <div id="collapseTwo" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
-                                        on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-                                        craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                        Postal rates depend on where you live. You can find out postal rates at the checkout step of the process.
                                     </div>
                                 </div>
                             </div>
@@ -117,9 +115,7 @@
                                 </div>
                                 <div id="collapseThree" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
-                                        on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-                                        craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                       We do not currently send overseas, but we are looking to expand in 2019!
                                     </div>
                                 </div>
                             </div>
