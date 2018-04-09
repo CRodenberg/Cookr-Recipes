@@ -1,7 +1,7 @@
 <?php
 	//Define the constants for accessing the database
 	DEFINE('DB_USER', 'root');
-	DEFINE('DB_PASSWORD', 'password');
+	DEFINE('DB_PASSWORD', 'pw');
 	DEFINE('DB_HOST', 'localhost');
 	DEFINE('DB_NAME', 'testdb');
 
