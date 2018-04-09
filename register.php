@@ -29,18 +29,18 @@
 
                         <hr>
 
-                        <form action="customer-orders.html" method="post">
+                        <form action="register-new.php" method="post">
                             <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name">
+                                <label for="name">Username</label>
+                                <input type="text" class="form-control" id="username" name="username">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email">
+                                <input type="text" class="form-control" id="email" name="email">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password">
+                                <input type="password" class="form-control" id="password" name="password">
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i> Register</button>
@@ -59,7 +59,7 @@
 
                         <hr>
 
-                        <form action="customer-orders.html" method="post">
+                        <form action="login.php" method="post">
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="text" class="form-control" id="email">
