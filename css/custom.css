@@ -1,0 +1,24 @@
+div#carousel-search {
+    position:relative;
+}
+
+div.carousel-form {
+    position:absolute;
+    z-index:9999999;
+    top:100px; /* change to whatever you want */
+    left:10px; /* change to whatever you want */
+    right:auto; /* change to whatever you want */
+    bottom:auto; /* change to whatever you want */
+}
+.carousel-wrapper{
+    position: relative;
+}
+#search-wrap{
+    position: absolute;
+    top: 50px;
+    width: 300px;
+    left: 275px;
+}
+#homeSearch{
+    z-index: 999;
+}

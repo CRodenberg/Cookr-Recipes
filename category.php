@@ -7,11 +7,11 @@ include('./includes/header.html');
 //Encode the URL
 $current_url = urlencode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 
-//Get the searched id from the URL. If an id is not set, then default the category to retro
+//Get the searched id from the URL. If an id is not set, then default the category to diet
 if(isset($_GET['id'])){
   $category_name = $_GET['id'];  
 }else{
-    $category_name = 'retro';
+    $category_name = 'Diet';
 }
 ?>
 <div id="all">
@@ -24,11 +24,9 @@ if(isset($_GET['id'])){
                         <li>
                             <a href="\index.php">Home</a>
                         </li>
-                        <?php 
-                            if($category_name == "women") echo '<li>Women</li>';
-                            elseif($category_name == "men") echo '<li>Men</li>';
-                            elseif($category_name == "retro") echo '<li>Retro Items</li>';
-                        ?>
+                        <li>
+                            <?php echo $category_name ?>
+                        </li>
                     </ul>
                 </div>
 
@@ -43,37 +41,31 @@ if(isset($_GET['id'])){
 
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked category-menu">
-                                <li id = "men_tab" <?php if($category_name == "men") echo 'class="active"'; ?>>
-                                    <a href="category.php?id=men">Men</a>
+                                <li id = "men_tab" <?php if($category_name == "Diet") echo 'class="active"'; ?>>
+                                    <a href="category.php?id=Diet">Diet</a>
                                     <ul>
-                                        <li><a href="category.php?id=men">T-shirts</a>
+                                        <li><a href="category.php?id=Protein">Protein</a>
                                         </li>
-                                        <li><a href="category.php?id=men">Shirts</a>
+                                        <li><a href="category.php?id=Vegetables">Vegetables</a>
                                         </li>
-                                        <li><a href="category.php?id=men">Pants</a>
+                                        <li><a href="category.php?id=Meat">Meat</a>
+                                        </li>
+                                        <li><a href="category.php?id=Gluten-Free">Gluten-Free</a>
                                         </li>
                                     </ul>
                                 </li>
-                                <li id = "women_tab" <?php if($category_name == "women") echo 'class="active"'; ?>>
-                                    <a href="category.php?id=women">Women</a>
+                                <li id = "women_tab" <?php if($category_name == "Country") echo 'class="active"'; ?>>
+                                    <a href="category.php?id=Country">Country</a>
                                     <ul>
-                                        <li><a href="category.php?id=women">T-shirts</a>
+                                        <li><a href="category.php?id=Italian">Italian</a>
                                         </li>
-                                        <li><a href="category.php?id=women">Pants</a>
+                                        <li><a href="category.php?id=Mexican">Mexican</a>
+                                        </li>
+                                        <li><a href="category.php?id=American">American</a>
+                                        </li>
+                                        <li><a href="category.php?id=German">German</a>
                                         </li>
                                     </ul>
-                                </li>
-                                <li id = "kids_tab" <?php if($category_name == "kids") echo 'class="active"'; ?>>
-                                    <a href="category.php?id=men">Kids</a>
-                                    <ul>
-                                        <li><a href="category.php?id=men">T-shirts</a>
-                                        </li>
-                                        <li><a href="category.php?id=men">Pants</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li id = "retro_tab" <?php if($category_name == "retro") echo 'class="active"'; ?>>
-                                    <a href="category.php?id=retro">Retro Items</a>
                                 </li>
                             </ul>
 
@@ -83,20 +75,12 @@ if(isset($_GET['id'])){
 
                 <div class="col-md-9">
                     <div class="box" <?php if($category_name != "women") echo 'style = "display: none"'?> id = "women_box">
-                        <h1>Women</h1>
-                        <p>In our Women's department we offer wide selection of the best products we have found and carefully selected from the past.</p>
+                        <h1>Country</h1>
+                        <p>In our Country selection we offer a wide selection of the best recipes from around the world</p>
                     </div>
                     <div class="box" <?php if($category_name != "men") echo 'style = "display: none"'?> id = "men_box">
-                        <h1>Men</h1>
-                        <p>Check out all of our latest products for Men. We have various items from the past, and customizable options as well!</p>
-                    </div>
-                    <div class="box" <?php if($category_name != "boys") echo 'style = "display: none"'?> id = "boys_box">
-                        <h1>Boys</h1>
-                        <p>Check out all of our latest products for Boys. We have various items from the past, and customizable options as well!</p>
-                    </div>
-                    <div class="box" <?php if($category_name != "girls") echo 'style = "display: none"'?> id = "girls__box">
-                        <h1>Girls</h1>
-                        <p>Check out all of our latest products for Girls. We have various items from the past, and customizable options as well!</p>
+                        <h1>Diet</h1>
+                        <p>In our Diet selection we offer a wide selection of the best recipes we have found and carefully selected for your health.</p>
                     </div>
                     <div class="box info-bar">
                         <div class="row">
@@ -118,7 +102,6 @@ if(isset($_GET['id'])){
                                                 <select name="sort-by" class="form-control">
                                                     <option>Price</option>
                                                     <option>Name</option>
-                                                    <option>Sales first</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -138,11 +121,11 @@ if(empty($_SESSION['cart'])){
 }
 
 //Check if the category is retro. If so, select all retro products from the DB. Display all products.
-if($category_name == 'retro'){
-    $product_array = $dbc->query("SELECT * FROM decade_products ORDER BY id ASC");//DB Call
+if($category_name == 'Diet'){
+    $product_array = $dbc->query("SELECT * FROM recipes ORDER BY id ASC");//DB Call
     while($row = $product_array->fetch_assoc()) {
 
-        $id = $row['product_code'];//Set $id = product. This will be passed through the URL.
+        $id = $row['id'];//Set $id = product. This will be passed through the URL.
 
         //echo the html for the individual products along with their values from the database
         echo '                    
@@ -153,7 +136,7 @@ if($category_name == 'retro'){
                                     <div class="modal-content">
                                       <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">' . $row["name"] .'</h4>
+                                        <h4 class="modal-title">' . $row["title"] .'</h4>
                                       </div>
                                       <div class="modal-body">
                                         <p>'. $row["description"] .'</p>
@@ -165,31 +148,27 @@ if($category_name == 'retro'){
 
                                   </div>
                                 </div>
-
-
-
-
                                 <div class="col-md-4 col-sm-6">
                                 <div class="product">
                                     <div class="flip-container">
                                         <div class="flipper">
                                             <div class="front">
                                                 <a href="detail.html">
-                                                    <img src="'. $row["image"] .'" alt="" class="img-responsive">
+                                                    <img src="'. $row["img"] .'" alt="" class="img-responsive">
                                                 </a>
                                             </div>
                                             <div class="back">
                                                 <a href="detail.html">
-                                                    <img src="'. $row["image"] .'" alt="" class="img-responsive">
+                                                    <img src="'. $row["img"] .'" alt="" class="img-responsive">
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
                                     <a href="detail.html" class="invisible">
-                                        <img src="'. $row["image"] .'" alt="" class="img-responsive">
+                                        <img src="'. $row["img"] .'" alt="" class="img-responsive">
                                     </a>
                                     <div class="text">
-                                        <h3><a href="detail.html">' . $row["name"] . '</a></h3>
+                                        <h3><a href="detail.html">' . $row["title"] . '</a></h3>
                                         <p class="price">' . '$' . $row["price"]/100 . '</p>
                                         <p class="buttons">
                                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#productModal' . $id . '">View Detail</button>
@@ -205,11 +184,11 @@ if($category_name == 'retro'){
 }//End if
 
 //Check if the category is men. If so, select all men products from the DB. Display all products.
-else if($category_name == 'men'){
-    $product_array = $dbc->query("SELECT * FROM specific_products WHERE general_categories_id = 1 ORDER BY id ASC");
+else if($category_name == 'Country'){
+    $product_array = $dbc->query("SELECT * FROM recipes ORDER BY id ASC");
     while($row = $product_array->fetch_assoc()) {
 
-        $id = $row['product_code'];//Set $id = product. This will be passed through the URL.
+        $id = $row['id'];//Set $id = product. This will be passed through the URL.
 
     echo '                    
                             <div id="productMenModal' . $id . '" class="modal fade" role="dialog">
@@ -219,7 +198,7 @@ else if($category_name == 'men'){
                                 <div class="modal-content">
                                   <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">' . $row["name"] .'</h4>
+                                    <h4 class="modal-title">' . $row["title"] .'</h4>
                                   </div>
                                   <div class="modal-body">
                                     <p>'. $row["description"] .'</p>
@@ -241,21 +220,21 @@ else if($category_name == 'men'){
                                     <div class="flipper">
                                         <div class="front">
                                             <a href="detail.html">
-                                                <img src="'. $row["image"] .'" alt="" class="img-responsive">
+                                                <img src="'. $row["img"] .'" alt="" class="img-responsive">
                                             </a>
                                         </div>
                                         <div class="back">
                                             <a href="detail.html">
-                                                <img src="'. $row["image"] .'" alt="" class="img-responsive">
+                                                <img src="'. $row["img"] .'" alt="" class="img-responsive">
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                                 <a href="detail.html" class="invisible">
-                                    <img src="'. $row["image"] .'" alt="" class="img-responsive">
+                                    <img src="'. $row["img"] .'" alt="" class="img-responsive">
                                 </a>
                                 <div class="text">
-                                    <h3><a href="detail.html">' . $row["name"] . '</a></h3>
+                                    <h3><a href="detail.html">' . $row["title"] . '</a></h3>
                                     <p class="price">' . '$' . $row["price"]/100 . '</p>
                                     <p class="buttons">
                                         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#productMenModal' . $id . '">View Detail</button>
