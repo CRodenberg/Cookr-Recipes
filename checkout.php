@@ -145,20 +145,16 @@
                                                 $total = 0;
                                                 $i = 0;
                                                 foreach($_SESSION['cart'] as $cart_item){
-                                                    if($cart_item >= 1000 && $cart_item < 2000){
-                                                        $cart_array = $dbc->query("SELECT * FROM decade_products WHERE product_code =" . $cart_item);//DB Call
-                                                    }else{
-                                                       $cart_array = $dbc->query("SELECT * FROM specific_products WHERE product_code =" . $cart_item);//DB Call 
-                                                    }
+                                                    $cart_array = $dbc->query("SELECT * FROM recipes WHERE id =" . $cart_item);//DB Call
                                                     $row = $cart_array->fetch_assoc();
                                                     $total += ($row["price"]/100);
                                                     echo '<tr>
                                                             <td>
                                                                 <a href="#">
-                                                                    <img src="' . $row["image"] . '" alt="' . $row["image"] . '">
+                                                                    <img src="' . $row["img"] . '" alt="' . $row["img"] . '">
                                                                 </a>
                                                             </td>
-                                                            <td><a href="#">' . $row["name"] . '</a>
+                                                            <td><a href="#">' . $row["title"] . '</a>
                                                             </td>
                                                             <td>
                                                                 1
@@ -192,8 +188,13 @@
                                     <a href="basket.php" class="btn btn-default"><i class="fa fa-chevron-left"></i>Back to Basket</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href = "paypal.php" class="btn btn-primary">Place an order<i class="fa fa-chevron-right"></i>
-                                    </a>
+                                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                                        <input type="hidden" name="cmd" value="_s-xclick">
+                                        <input type="hidden" name="hosted_button_id" value="Z5FJ2JACP74EE">
+                                        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                                        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                                    </form>
+
                                 </div>
                             </div>
                         </form>

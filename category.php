@@ -9,7 +9,9 @@ $current_url = urlencode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['RE
 
 //Get the searched id from the URL. If an id is not set, then default the category to diet
 if(isset($_GET['id'])){
-  $category_name = $_GET['id'];  
+  $category_name = $_GET['id']; 
+}else if(isset($_GET['search-term'])){
+    $category_name = $_GET['search-term'];
 }else{
     $category_name = 'Diet';
 }
@@ -41,7 +43,7 @@ if(isset($_GET['id'])){
 
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked category-menu">
-                                <li id = "men_tab" <?php if($category_name == "Diet") echo 'class="active"'; ?>>
+                                <li id = "men_tab" <?php if($category_name == "Diet" || $category_name == "Protein" || $category_name == "Vegetables" || $category_name == "Meat") echo 'class="active"'; ?>>
                                     <a href="category.php?id=Diet">Diet</a>
                                     <ul>
                                         <li><a href="category.php?id=Protein">Protein</a>
@@ -50,11 +52,9 @@ if(isset($_GET['id'])){
                                         </li>
                                         <li><a href="category.php?id=Meat">Meat</a>
                                         </li>
-                                        <li><a href="category.php?id=Gluten-Free">Gluten-Free</a>
-                                        </li>
                                     </ul>
                                 </li>
-                                <li id = "women_tab" <?php if($category_name == "Country") echo 'class="active"'; ?>>
+                                <li id = "women_tab" <?php if($category_name == "Country" || $category_name == "Italian" || $category_name == "Mexican" || $category_name == "American") echo 'class="active"'; ?>>
                                     <a href="category.php?id=Country">Country</a>
                                     <ul>
                                         <li><a href="category.php?id=Italian">Italian</a>
@@ -62,8 +62,6 @@ if(isset($_GET['id'])){
                                         <li><a href="category.php?id=Mexican">Mexican</a>
                                         </li>
                                         <li><a href="category.php?id=American">American</a>
-                                        </li>
-                                        <li><a href="category.php?id=German">German</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -74,41 +72,13 @@ if(isset($_GET['id'])){
                 </div>
 
                 <div class="col-md-9">
-                    <div class="box" <?php if($category_name != "women") echo 'style = "display: none"'?> id = "women_box">
+                    <div class="box" <?php if($category_name != "Country" && $category_name != "American" && $category_name != "Mexican" && $category_name != "Italian") echo 'style = "display: none"'?> id = "women_box">
                         <h1>Country</h1>
                         <p>In our Country selection we offer a wide selection of the best recipes from around the world</p>
                     </div>
-                    <div class="box" <?php if($category_name != "men") echo 'style = "display: none"'?> id = "men_box">
+                    <div class="box" <?php if($category_name != "Diet" && $category_name != "Protein" && $category_name != "Vegetables" && $category_name != "Meat") echo 'style = "display: none"'?> id = "men_box">
                         <h1>Diet</h1>
                         <p>In our Diet selection we offer a wide selection of the best recipes we have found and carefully selected for your health.</p>
-                    </div>
-                    <div class="box info-bar">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-4 products-showing">
-                                Showing <strong>12</strong> of <strong>25</strong> products
-                            </div>
-
-                            <div class="col-sm-12 col-md-8  products-number-sort">
-                                <div class="row">
-                                    <form class="form-inline">
-                                        <div class="col-md-6 col-sm-6">
-                                            <div class="products-number">
-                                                <strong>Show</strong>  <a href="#" class="btn btn-default btn-sm btn-primary">12</a>  <a href="#" class="btn btn-default btn-sm">24</a>  <a href="#" class="btn btn-default btn-sm">All</a> products
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6">
-                                            <div class="products-sort-by">
-                                                <strong>Sort by</strong>
-                                                <select name="sort-by" class="form-control">
-                                                    <option>Price</option>
-                                                    <option>Name</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="row products">
@@ -122,7 +92,7 @@ if(empty($_SESSION['cart'])){
 
 //Check if the category is retro. If so, select all retro products from the DB. Display all products.
 if($category_name == 'Diet'){
-    $product_array = $dbc->query("SELECT * FROM recipes ORDER BY id ASC");//DB Call
+    $product_array = $dbc->query("SELECT * FROM recipes WHERE category='Diet' ORDER BY id ASC LIMIT 12");//DB Call
     while($row = $product_array->fetch_assoc()) {
 
         $id = $row['id'];//Set $id = product. This will be passed through the URL.
@@ -185,7 +155,7 @@ if($category_name == 'Diet'){
 
 //Check if the category is men. If so, select all men products from the DB. Display all products.
 else if($category_name == 'Country'){
-    $product_array = $dbc->query("SELECT * FROM recipes ORDER BY id ASC");
+    $product_array = $dbc->query("SELECT * FROM recipes WHERE category='Country' ORDER BY id ASC LIMIT 12");
     while($row = $product_array->fetch_assoc()) {
 
         $id = $row['id'];//Set $id = product. This will be passed through the URL.
@@ -248,21 +218,22 @@ else if($category_name == 'Country'){
         '; 
     }
 }//End else if
-else if($category_name == 'women'){
-    $product_array = $dbc->query("SELECT * FROM specific_products WHERE general_categories_id = 2 ORDER BY id ASC");
+
+else if($category_name == 'Protein'){
+    $product_array = $dbc->query("SELECT * FROM recipes WHERE type='Protein' ORDER BY id ASC LIMIT 12");
     while($row = $product_array->fetch_assoc()) {
 
-        $id = $row['product_code'];//Set $id = product. This will be passed through the URL.
-    //foreach($product_array as $key=>$value){
-    echo '   
-                            <div id="productWomenModal' . $id . '" class="modal fade" role="dialog">
+        $id = $row['id'];//Set $id = product. This will be passed through the URL.
+
+    echo '                    
+                            <div id="productMenModal' . $id . '" class="modal fade" role="dialog">
                               <div class="modal-dialog">
 
                                 <!-- Modal content-->
                                 <div class="modal-content">
                                   <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">' . $row["name"] .'</h4>
+                                    <h4 class="modal-title">' . $row["title"] .'</h4>
                                   </div>
                                   <div class="modal-body">
                                     <p>'. $row["description"] .'</p>
@@ -276,31 +247,33 @@ else if($category_name == 'women'){
                             </div>
 
 
-                     <div class="col-md-4 col-sm-6">
+
+
+                            <div class="col-md-4 col-sm-6">
                             <div class="product">
                                 <div class="flip-container">
                                     <div class="flipper">
                                         <div class="front">
                                             <a href="detail.html">
-                                                <img src="'. $row["image"] .'" alt="" class="img-responsive">
+                                                <img src="'. $row["img"] .'" alt="" class="img-responsive">
                                             </a>
                                         </div>
                                         <div class="back">
                                             <a href="detail.html">
-                                                <img src="'. $row["image"] .'" alt="" class="img-responsive">
+                                                <img src="'. $row["img"] .'" alt="" class="img-responsive">
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                                 <a href="detail.html" class="invisible">
-                                    <img src="'. $row["image"] .'" alt="" class="img-responsive">
+                                    <img src="'. $row["img"] .'" alt="" class="img-responsive">
                                 </a>
                                 <div class="text">
-                                    <h3><a href="detail.html">' . $row["name"] . '</a></h3>
+                                    <h3><a href="detail.html">' . $row["title"] . '</a></h3>
                                     <p class="price">' . '$' . $row["price"]/100 . '</p>
                                     <p class="buttons">
-                                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#productWomenModal' . $id . '">View Detail</button>
-                                        <a href="basket.php?buy=' . $id . '" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#productMenModal' . $id . '">View Detail</button>
+                                        <a href="basket.php?buy='. $id .'" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </p>
                                 </div>
                                 <!-- /.text -->
@@ -309,7 +282,333 @@ else if($category_name == 'women'){
                         </div>             
         '; 
     }
-}//else if
+}//End else if                         
+
+else if($category_name == 'Vegetables'){
+    $product_array = $dbc->query("SELECT * FROM recipes WHERE type='Vegetables' ORDER BY id ASC LIMIT 12");
+    while($row = $product_array->fetch_assoc()) {
+
+        $id = $row['id'];//Set $id = product. This will be passed through the URL.
+
+    echo '                    
+                            <div id="productMenModal' . $id . '" class="modal fade" role="dialog">
+                              <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">' . $row["title"] .'</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    <p>'. $row["description"] .'</p>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+
+
+
+
+                            <div class="col-md-4 col-sm-6">
+                            <div class="product">
+                                <div class="flip-container">
+                                    <div class="flipper">
+                                        <div class="front">
+                                            <a href="detail.html">
+                                                <img src="'. $row["img"] .'" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="back">
+                                            <a href="detail.html">
+                                                <img src="'. $row["img"] .'" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="detail.html" class="invisible">
+                                    <img src="'. $row["img"] .'" alt="" class="img-responsive">
+                                </a>
+                                <div class="text">
+                                    <h3><a href="detail.html">' . $row["title"] . '</a></h3>
+                                    <p class="price">' . '$' . $row["price"]/100 . '</p>
+                                    <p class="buttons">
+                                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#productMenModal' . $id . '">View Detail</button>
+                                        <a href="basket.php?buy='. $id .'" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    </p>
+                                </div>
+                                <!-- /.text -->
+                            </div>
+                            <!-- /.product -->
+                        </div>             
+        '; 
+    }
+}//End else if                         
+
+else if($category_name == 'Meat'){
+    $product_array = $dbc->query("SELECT * FROM recipes WHERE type='Meat' ORDER BY id ASC LIMIT 12");
+    while($row = $product_array->fetch_assoc()) {
+
+        $id = $row['id'];//Set $id = product. This will be passed through the URL.
+
+    echo '                    
+                            <div id="productMenModal' . $id . '" class="modal fade" role="dialog">
+                              <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">' . $row["title"] .'</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    <p>'. $row["description"] .'</p>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+
+
+
+
+                            <div class="col-md-4 col-sm-6">
+                            <div class="product">
+                                <div class="flip-container">
+                                    <div class="flipper">
+                                        <div class="front">
+                                            <a href="detail.html">
+                                                <img src="'. $row["img"] .'" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="back">
+                                            <a href="detail.html">
+                                                <img src="'. $row["img"] .'" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="detail.html" class="invisible">
+                                    <img src="'. $row["img"] .'" alt="" class="img-responsive">
+                                </a>
+                                <div class="text">
+                                    <h3><a href="detail.html">' . $row["title"] . '</a></h3>
+                                    <p class="price">' . '$' . $row["price"]/100 . '</p>
+                                    <p class="buttons">
+                                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#productMenModal' . $id . '">View Detail</button>
+                                        <a href="basket.php?buy='. $id .'" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    </p>
+                                </div>
+                                <!-- /.text -->
+                            </div>
+                            <!-- /.product -->
+                        </div>             
+        '; 
+    }
+}//End else if                         
+
+else if($category_name == 'Italian'){
+    $product_array = $dbc->query("SELECT * FROM recipes WHERE type='Italian' ORDER BY id ASC LIMIT 12");
+    while($row = $product_array->fetch_assoc()) {
+
+        $id = $row['id'];//Set $id = product. This will be passed through the URL.
+
+    echo '                    
+                            <div id="productMenModal' . $id . '" class="modal fade" role="dialog">
+                              <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">' . $row["title"] .'</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    <p>'. $row["description"] .'</p>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+
+
+
+
+                            <div class="col-md-4 col-sm-6">
+                            <div class="product">
+                                <div class="flip-container">
+                                    <div class="flipper">
+                                        <div class="front">
+                                            <a href="detail.html">
+                                                <img src="'. $row["img"] .'" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="back">
+                                            <a href="detail.html">
+                                                <img src="'. $row["img"] .'" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="detail.html" class="invisible">
+                                    <img src="'. $row["img"] .'" alt="" class="img-responsive">
+                                </a>
+                                <div class="text">
+                                    <h3><a href="detail.html">' . $row["title"] . '</a></h3>
+                                    <p class="price">' . '$' . $row["price"]/100 . '</p>
+                                    <p class="buttons">
+                                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#productMenModal' . $id . '">View Detail</button>
+                                        <a href="basket.php?buy='. $id .'" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    </p>
+                                </div>
+                                <!-- /.text -->
+                            </div>
+                            <!-- /.product -->
+                        </div>             
+        '; 
+    }
+}//End else if                         
+
+else if($category_name == 'Mexican'){
+    $product_array = $dbc->query("SELECT * FROM recipes WHERE type='Mexican' ORDER BY id ASC LIMIT 12");
+    while($row = $product_array->fetch_assoc()) {
+
+        $id = $row['id'];//Set $id = product. This will be passed through the URL.
+
+    echo '                    
+                            <div id="productMenModal' . $id . '" class="modal fade" role="dialog">
+                              <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">' . $row["title"] .'</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    <p>'. $row["description"] .'</p>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+
+
+
+
+                            <div class="col-md-4 col-sm-6">
+                            <div class="product">
+                                <div class="flip-container">
+                                    <div class="flipper">
+                                        <div class="front">
+                                            <a href="detail.html">
+                                                <img src="'. $row["img"] .'" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="back">
+                                            <a href="detail.html">
+                                                <img src="'. $row["img"] .'" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="detail.html" class="invisible">
+                                    <img src="'. $row["img"] .'" alt="" class="img-responsive">
+                                </a>
+                                <div class="text">
+                                    <h3><a href="detail.html">' . $row["title"] . '</a></h3>
+                                    <p class="price">' . '$' . $row["price"]/100 . '</p>
+                                    <p class="buttons">
+                                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#productMenModal' . $id . '">View Detail</button>
+                                        <a href="basket.php?buy='. $id .'" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    </p>
+                                </div>
+                                <!-- /.text -->
+                            </div>
+                            <!-- /.product -->
+                        </div>             
+        '; 
+    }
+}//End else if                         
+
+else if($category_name == 'American'){
+    $product_array = $dbc->query("SELECT * FROM recipes WHERE type='American' ORDER BY id ASC LIMIT 12");
+    while($row = $product_array->fetch_assoc()) {
+
+        $id = $row['id'];//Set $id = product. This will be passed through the URL.
+
+    echo '                    
+                            <div id="productMenModal' . $id . '" class="modal fade" role="dialog">
+                              <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">' . $row["title"] .'</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    <p>'. $row["description"] .'</p>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+
+
+
+
+                            <div class="col-md-4 col-sm-6">
+                            <div class="product">
+                                <div class="flip-container">
+                                    <div class="flipper">
+                                        <div class="front">
+                                            <a href="detail.html">
+                                                <img src="'. $row["img"] .'" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="back">
+                                            <a href="detail.html">
+                                                <img src="'. $row["img"] .'" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="detail.html" class="invisible">
+                                    <img src="'. $row["img"] .'" alt="" class="img-responsive">
+                                </a>
+                                <div class="text">
+                                    <h3><a href="detail.html">' . $row["title"] . '</a></h3>
+                                    <p class="price">' . '$' . $row["price"]/100 . '</p>
+                                    <p class="buttons">
+                                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#productMenModal' . $id . '">View Detail</button>
+                                        <a href="basket.php?buy='. $id .'" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    </p>
+                                </div>
+                                <!-- /.text -->
+                            </div>
+                            <!-- /.product -->
+                        </div>             
+        '; 
+    }
+}//End else if                         
+
 else{
     echo 'Sorry, that category is no longer being offered on our site. For further information, ask us on our Social Media or email support';
 }
@@ -326,14 +625,6 @@ else{
                             <li><a href="#">&laquo;</a>
                             </li>
                             <li class="active"><a href="#">1</a>
-                            </li>
-                            <li><a href="#">2</a>
-                            </li>
-                            <li><a href="#">3</a>
-                            </li>
-                            <li><a href="#">4</a>
-                            </li>
-                            <li><a href="#">5</a>
                             </li>
                             <li><a href="#">&raquo;</a>
                             </li>

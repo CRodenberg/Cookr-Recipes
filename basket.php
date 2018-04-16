@@ -61,20 +61,16 @@ include('./includes/header.html');
                                                 $total = 0;
                                                 $i = 0;
                                                 foreach($_SESSION['cart'] as $cart_item){
-                                                    if($cart_item >= 1000 && $cart_item < 2000){
-                                                        $cart_array = $dbc->query("SELECT * FROM decade_products WHERE product_code =" . $cart_item);//DB Call
-                                                    }else{
-                                                       $cart_array = $dbc->query("SELECT * FROM specific_products WHERE product_code =" . $cart_item);//DB Call 
-                                                    }
+                                                    $cart_array = $dbc->query("SELECT * FROM recipes WHERE id =" . $cart_item);//DB Call
                                                     $row = $cart_array->fetch_assoc();
                                                     $total += ($row["price"]/100);
                                                     echo '<tr>
                                                             <td>
                                                                 <a href="#">
-                                                                    <img src="' . $row["image"] . '" alt="' . $row["image"] . '">
+                                                                    <img src="' . $row["img"] . '" alt="' . $row["img"] . '">
                                                                 </a>
                                                             </td>
-                                                            <td><a href="#">' . $row["name"] . '</a>
+                                                            <td><a href="#">' . $row["title"] . '</a>
                                                             </td>
                                                             <td>
                                                                 1
@@ -107,7 +103,7 @@ include('./includes/header.html');
 
                             <div class="box-footer">
                                 <div class="pull-left">
-                                    <a href="category.php?id=retro" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
+                                    <a href="category.php?id=Diet" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
                                 </div>
                                 <div class="pull-right">
                                     <button class="btn btn-default"><i class="fa fa-refresh"></i> Update basket</button>
@@ -152,27 +148,6 @@ include('./includes/header.html');
                             </table>
                         </div>
 
-                    </div>
-
-
-                    <div class="box">
-                        <div class="box-header">
-                            <h4>Coupon code</h4>
-                        </div>
-                        <p class="text-muted">If you have a coupon code, please enter it in the box below.</p>
-                        <form>
-                            <div class="input-group">
-
-                                <input type="text" class="form-control">
-
-                                <span class="input-group-btn">
-
-					<button class="btn btn-primary" type="button"><i class="fa fa-gift"></i></button>
-
-				    </span>
-                            </div>
-                            <!-- /input-group -->
-                        </form>
                     </div>
 
                 </div>

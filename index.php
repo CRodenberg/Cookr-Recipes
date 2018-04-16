@@ -30,8 +30,6 @@ include('./includes/header.html');
                                         </li>
                                         <li><a href="category.php?id=Meat">Meat</a>
                                         </li>
-                                        <li><a href="category.php?id=Gluten-Free">Gluten-Free</a>
-                                        </li>
                                     </ul>
                                 </li>
                                 <li id = "women_tab">
@@ -42,8 +40,6 @@ include('./includes/header.html');
                                         <li><a href="category.php?id=Mexican">Mexican</a>
                                         </li>
                                         <li><a href="category.php?id=American">American</a>
-                                        </li>
-                                        <li><a href="category.php?id=German">German</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -57,7 +53,7 @@ include('./includes/header.html');
                         <div class="search-bar" id="search-wrap">
                             <form class="carousel-form" action="category.php" role="search">
                                 <div class="input-group" id = "carousel-search">
-                                    <input type="text" class="form-control" placeholder="Search">
+                                    <input type="text" name = "search-term" class="form-control" placeholder="Search">
                                     <span class="input-group-btn" id="homeSearch">
                                         <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                                     </span>

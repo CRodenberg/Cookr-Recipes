@@ -6,8 +6,11 @@
     $username = $_POST['username'];
     $password = $_POST['password'];
     $email = $_POST['email'];
+    $id_query = "SELECT * from users";
+    $id_result = mysqli_query($db, $id_query);
+    $id = mysqli_num_rows($id_result);
 
-    $query = "INSERT INTO `users`(`username`, `email`, `date_created`, `id`, `password`) VALUES ('JaneDoe', 'dj@gmail.com', '9999-12-31', 3, '1234')";
+    $query = "INSERT INTO `users`(`username`, `email`, `date_created`, `id`, `password`) VALUES ('$username', '$email', '9999-12-31', $id, '$password')";
 
     // Perform Query
     $result = mysqli_query($db, $query);
