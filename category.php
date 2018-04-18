@@ -109,8 +109,11 @@ if($category_name == 'Diet'){
                                         <h4 class="modal-title">' . $row["title"] .'</h4>
                                       </div>
                                       <div class="modal-body">
-                                        <p>'. $row["description"] .'</p>
-                                      </div>
+                                    <h3>Recipe</h3>
+                                    <p>'. $row["description"] .'</p>
+                                    <h3>Ingredients</h3>
+                                    <p>'. $row["ingredients"] .'</p>
+                                  </div>
                                       <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                       </div>
@@ -171,7 +174,10 @@ else if($category_name == 'Country'){
                                     <h4 class="modal-title">' . $row["title"] .'</h4>
                                   </div>
                                   <div class="modal-body">
+                                    <h3>Recipe</h3>
                                     <p>'. $row["description"] .'</p>
+                                    <h3>Ingredients</h3>
+                                    <p>'. $row["ingredients"] .'</p>
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -236,7 +242,10 @@ else if($category_name == 'Protein'){
                                     <h4 class="modal-title">' . $row["title"] .'</h4>
                                   </div>
                                   <div class="modal-body">
+                                    <h3>Recipe</h3>
                                     <p>'. $row["description"] .'</p>
+                                    <h3>Ingredients</h3>
+                                    <p>'. $row["ingredients"] .'</p>
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -301,7 +310,10 @@ else if($category_name == 'Vegetables'){
                                     <h4 class="modal-title">' . $row["title"] .'</h4>
                                   </div>
                                   <div class="modal-body">
+                                    <h3>Recipe</h3>
                                     <p>'. $row["description"] .'</p>
+                                    <h3>Ingredients</h3>
+                                    <p>'. $row["ingredients"] .'</p>
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -366,7 +378,10 @@ else if($category_name == 'Meat'){
                                     <h4 class="modal-title">' . $row["title"] .'</h4>
                                   </div>
                                   <div class="modal-body">
+                                    <h3>Recipe</h3>
                                     <p>'. $row["description"] .'</p>
+                                    <h3>Ingredients</h3>
+                                    <p>'. $row["ingredients"] .'</p>
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -431,7 +446,10 @@ else if($category_name == 'Italian'){
                                     <h4 class="modal-title">' . $row["title"] .'</h4>
                                   </div>
                                   <div class="modal-body">
+                                    <h3>Recipe</h3>
                                     <p>'. $row["description"] .'</p>
+                                    <h3>Ingredients</h3>
+                                    <p>'. $row["ingredients"] .'</p>
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -496,7 +514,10 @@ else if($category_name == 'Mexican'){
                                     <h4 class="modal-title">' . $row["title"] .'</h4>
                                   </div>
                                   <div class="modal-body">
+                                    <h3>Recipe</h3>
                                     <p>'. $row["description"] .'</p>
+                                    <h3>Ingredients</h3>
+                                    <p>'. $row["ingredients"] .'</p>
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -561,7 +582,10 @@ else if($category_name == 'American'){
                                     <h4 class="modal-title">' . $row["title"] .'</h4>
                                   </div>
                                   <div class="modal-body">
+                                    <h3>Recipe</h3>
                                     <p>'. $row["description"] .'</p>
+                                    <h3>Ingredients</h3>
+                                    <p>'. $row["ingredients"] .'</p>
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -570,10 +594,6 @@ else if($category_name == 'American'){
 
                               </div>
                             </div>
-
-
-
-
                             <div class="col-md-4 col-sm-6">
                             <div class="product">
                                 <div class="flip-container">
