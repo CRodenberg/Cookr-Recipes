@@ -15,8 +15,8 @@ if(isset($_POST["type"]) && $_POST["type"]=='add' && $_POST["product_qty"]>0)
     unset($new_product['return_url']); 
     
     //we need to get product name and price from database.
-    $statement = $dbc->prepare("SELECT name, price FROM decade_products WHERE product_code=? LIMIT 1");
-    $statement->bind_param('s', $new_product['product_code']);
+    $statement = $dbc->prepare("SELECT title, price FROM recipes WHERE id=? LIMIT 1");
+    $statement->bind_param('s', $new_product['id']);
     $statement->execute();
     $statement->bind_result($product_name, $price);
     
@@ -27,9 +27,9 @@ if(isset($_POST["type"]) && $_POST["type"]=='add' && $_POST["product_qty"]>0)
         $new_product["product_price"] = $price;
         
         if(isset($_SESSION["cart"])){  //if session var already exist
-            if(isset($_SESSION["cart"][$new_product['product_code']])) //check item exist in products array
+            if(isset($_SESSION["cart"][$new_product['id']])) //check item exist in products array
             {
-                unset($_SESSION["cart"][$new_product['product_code']]); //unset old array item
+                unset($_SESSION["cart"][$new_product['id']]); //unset old array item
             }           
         }
         $_SESSION["cart"][$new_product['product_code']] = $new_product; //update or create product session with new item  

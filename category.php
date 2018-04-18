@@ -82,7 +82,7 @@ if(isset($_GET['id'])){
                     </div>
 
                     <div class="row products">
-<!--PHP Code to Generate the Products from the Database. As of 4/9/17, this code will also check to see whether the user searched for Men, Women, or Retro-->
+<!--PHP Code to Generate the Products from the Database. As of 4/18/18, this code will also check to see whether the user searched for one of the current categories-->
 <?php
 
 //Check if the cart is empty. If true, initialize the cart session.
@@ -90,7 +90,7 @@ if(empty($_SESSION['cart'])){
   $_SESSION['cart'] = array();
 }
 
-//Check if the category is retro. If so, select all retro products from the DB. Display all products.
+//Check if the category is Diet. If so, select all Diet products from the DB. Display all products.
 if($category_name == 'Diet'){
     $product_array = $dbc->query("SELECT * FROM recipes WHERE category='Diet' ORDER BY id ASC LIMIT 12");//DB Call
     while($row = $product_array->fetch_assoc()) {
@@ -156,7 +156,7 @@ if($category_name == 'Diet'){
     }//End while
 }//End if
 
-//Check if the category is men. If so, select all men products from the DB. Display all products.
+//Check if the category is Country. If so, select all Category products from the DB. Display all products.
 else if($category_name == 'Country'){
     $product_array = $dbc->query("SELECT * FROM recipes WHERE category='Country' ORDER BY id ASC LIMIT 12");
     while($row = $product_array->fetch_assoc()) {
